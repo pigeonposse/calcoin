@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calcoin - Employee Distribution Calculator</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="../utils/calcoinicon.png" type="image/png">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+</head>
+<body>
+  <main id="container">
+    <section class="left-section">
+      <header>
+        <img src="../utils/calcoinbrand.png" alt="Calcoin logo" class="logo light-mode">
+        <img src="../utils/calcoinbrandw.png" alt="Calcoin logo" class="logo dark-mode">
+      </header>
+      <div class="add-employee-form">
+        <h2>Add Employee</h2>
+        <form id="empleadosForm">
+          <div class="form-group employee-input-group">
+            <input type="text" id="nombreEmpleado" name="nombreEmpleado" placeholder="Name" required>
+            <div>
+              <select id="puestoEmpleado" name="puestoEmpleado">
+                <option value="Group 1">Group 1</option>
+                <option value="Group 2">Group 2</option>
+                <option value="Group 3">Group 3</option>
+              </select>
+              <input type="number" id="horasEmpleado" name="horasEmpleado" placeholder="Workday" required>
+            </div>
+          </div>
+          <button type="button" id="anadirEmpleado">Add Employee</button>
+        </form>
+      </div>
+      <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Search employees...">
+      </div>
+      <div class="button-group">
+        <button id="importarDatos">Import</button>
+        <button id="exportarDatos">Export</button>
+        <button id="borrarTodosEmpleados">Delete</button>
+      </div>
+      <div id="calculateDistribution">
+        <h2>Calculate Distribution</h2>
+        <form id="boteForm">
+          <div class="form-group-horizontal">
+            <input type="number" step="0.01" id="totalDinero" placeholder="Money" name="totalDinero" required>
+            <input type="week" id="semanaReparto" placeholder="Week" name="semanaReparto" required>
+            <input type="number" step="0.01" id="pointGroup1" placeholder="Point 1" class="point-group" name="pointGroup1" required>
+            <input type="number" step="0.01" id="pointGroup2" placeholder="Point 2" class="point-group" name="pointGroup2" required>
+            <input type="number" step="0.01" id="pointGroup3" placeholder="Point 3" class="point-group" name="pointGroup3" required>
+          </div>
+          <button type="submit">Calculate Distribution</button>
+        </form>
+      </div>
+      <footer>
+        <div class="collectivelinks">
+          <ul>
+            <li><a href="https://twitter.com/pigeonposse_" target="_blank">twitter</a></li>
+            <li><a href="https://www.instagram.com/pigeon.posse/" target="_blank">instagram</a></li>
+            <li><a href="https://medium.com/@pigeonposse" target="_blank">medium</a></li>
+            <li><a href="https://pigeonposse.com" target="_blank">web</a></li>
+            <li><a href="mailto:dev@pigeonposse.com" target="_blank">email</a></li>
+          </ul>
+        </div>
+        <div class="mark">
+          <p>Released under the <a href="https://www.gnu.org/licenses/gpl-3.0.en.html" target="_blank">GPL-3.0 License</a></p>
+          <p>Copyright &copy; 2024 <a href="https://pigeonposse.com" target="_blank">PigeonPosse</a></p>
+        </div>
+      </footer>
+    </section>
+    <section class="right-section">
+      <div id="download-buttons" class="download-buttons" style="display: none;">
+        <button id="descargarPDF" class="circular-button">
+          <img src="https://www.svgrepo.com/show/1192/pdf-file-format-symbol.svg" alt="PDF">
+        </button>
+        <button id="descargarXLS" class="circular-button">
+          <img src="https://www.svgrepo.com/show/28412/xls-file-format-symbol.svg" alt="XLS">
+        </button>
+        <button id="imprimir" class="circular-button">
+          <img src="https://www.svgrepo.com/show/358113/print.svg" alt="Print">
+        </button>
+        <button id="compartir" class="circular-button">
+          <img src="https://www.svgrepo.com/show/506747/share-1.svg" alt="Share">
+        </button>
+      </div>
+      <h2>Breakdown</h2>
+      <div id="totalCalculatedDistribution"></div>
+      <div id="employeeTableContainer">
+        <table id="employeeTable">
+          <thead>
+            <tr>
+              <th onclick="sortTable('asset')">Asset</th>
+              <th onclick="sortTable('nombre')">Name</th>
+              <th onclick="sortTable('group')">Group</th>
+              <th onclick="sortTable('horas')">Workday</th>
+              <th onclick="sortTable('amount')">Amount</th>
+              <th onclick="sortTable('rounding')">Rounding</th>
+              <th>Options</th>
+            </tr>
+          </thead>
+          <tbody id="empleadosCuerpo"></tbody>
+        </table>
+      </div>
+      <div id="welcomeMessage" class="welcome-message">
+        <p>Welcome to Calcoin! To get started, you first need to add your employees and once they are all there, you can make a proper distribution of money for a happy world.</p>
+      </div>
+    </section>
+  </main>
+  <div id="popupEliminarEmpleado" class="popup" hidden>
+    <div class="popup-content">
+      <button type="button" class="close" id="closePopupEliminar" aria-label="Close">&times;</button>
+      <h2>Confirm Delete</h2>
+      <p id="mensajeConfirmacion"></p>
+      <button id="confirmarEliminar">Delete</button>
+      <button id="cancelarEliminar">Cancel</button>
+    </div>
+  </div>
+  <button id="toggleMode" aria-label="Toggle dark mode">
+    <img src="https://www.svgrepo.com/show/532875/moon.svg" alt="Dark Mode">
+  </button>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.5/xlsx.full.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
