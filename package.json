@@ -1,0 +1,34 @@
+{
+    "name": "calcoin",
+    "version": "0.1.0",
+    "description": "A company bonus management tool to streamline the distribution of bonuses and associated resources across pre-configured groups.",
+    "main": "index.js",
+    "scripts": {
+      "start": "open index.html",
+      "build": "echo 'No build step defined'",
+      "test": "echo 'No test defined' && exit 0"
+    },
+    "keywords": [
+      "bonuses",
+      "management",
+      "employees",
+      "distribution",
+      "open-source"
+    ],
+    "author": "PigeonPosse",
+    "license": "MIT",
+    "homepage": "https://github.com/pigeonposse/calcoin",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/pigeonposse/calcoin.git"
+    },
+    "dependencies": {
+      "xlsx": "^0.17.5",
+      "jspdf": "^2.5.1"
+    },
+    "devDependencies": {},
+    "engines": {
+      "node": ">=14.0.0"
+    }
+  }
+  
