@@ -31,13 +31,6 @@
 
 No special installation required. Simply include this script in your HTML and make sure to load the dependencies like `XLSX.js` and `jsPDF.js`.
 
-
-## License
-
-This tool is open-source and available for modification and redistribution under the MIT License.
-
-© 2024 Calcoin Project
-
 ## ☕ Donate
 
 Help us to develop more interesting things.
