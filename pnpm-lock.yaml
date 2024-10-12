@@ -27,10 +27,10 @@ importers:
         specifier: 15.11.0
         version: 15.11.0
       jspdf:
-        specifier: ^2.5.2
+        specifier: 2.5.2
         version: 2.5.2
       jspdf-autotable:
-        specifier: ^3.8.3
+        specifier: 3.8.3
         version: 3.8.3(jspdf@2.5.2)
       vite:
         specifier: 5.4.8
@@ -39,7 +39,7 @@ importers:
         specifier: 0.20.5
         version: 0.20.5(@vite-pwa/assets-generator@0.2.6)(vite@5.4.8(terser@5.34.1))(workbox-build@7.1.1)(workbox-window@7.1.0)
       xlsx:
-        specifier: ^0.18.5
+        specifier: 0.18.5
         version: 0.18.5
 
 packages:
