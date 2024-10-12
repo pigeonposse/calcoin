@@ -1,33 +1,54 @@
 {
-    "name": "calcoin",
-    "version": "0.1.0",
-    "description": "A company bonus management tool to streamline the distribution of bonuses and associated resources across pre-configured groups.",
-    "main": "index.js",
-    "scripts": {
-      "start": "open src/index.html",
-      "build": "echo 'No build step defined'",
-      "test": "echo 'No test defined' && exit 0"
-    },
-    "keywords": [
-      "bonuses",
-      "management",
-      "employees",
-      "distribution",
-      "open-source"
-    ],
-    "author": "PigeonPosse",
-    "license": "MIT",
-    "homepage": "https://github.com/pigeonposse/calcoin",
-    "repository": {
-      "type": "git",
-      "url": "https://github.com/pigeonposse/calcoin.git"
-    },
-    "devDependencies": {
-      "xlsx": "^0.17.5",
-      "jspdf": "^2.5.1"
-    },
-    "engines": {
-      "node": ">=14.0.0"
-    }
-  }
+  "name": "calcoin",
+  "version": "0.1.0",
+  "description": "A company bonus management tool to streamline the distribution of bonuses and associated resources across pre-configured groups.",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "generate-pwa-assets": "pwa-assets-generator --preset minimal-2023 public/logo.png",
+    "push": "git add . && git commit -m \"$1\" && git push -f origin \"$2\""
+  },
   
+  "type": "module",
+  "keywords": [
+    "bonuses",
+    "management",
+    "employees",
+    "distribution",
+    "open-source"
+  ],
+  "author": {
+    "name": "Alejo",
+    "url": "https://github.com/alejomalia"
+  },
+  "contributors": [
+		{
+			"name": "Angelo",
+			"email": "anggelo@pigeonposse.com",
+			"url": "https://github.com/angelespejo"
+		}
+	],
+  "license": "GPL-3.0",
+  "homepage": "https://calcoin.pigeonposse.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pigeonposse/calcoin.git"
+  },
+  "devDependencies": {
+    "@eslint/js": "9.12.0",
+    "@stylistic/eslint-plugin": "2.9.0",
+    "@types/eslint__js": "8.42.3",
+    "@vite-pwa/assets-generator": "0.2.6",
+    "eslint": "9.12.0",
+    "globals": "15.11.0",
+    "jspdf": "2.5.2",
+    "jspdf-autotable": "3.8.3",
+    "vite": "5.4.8",
+    "vite-plugin-pwa": "0.20.5",
+    "xlsx": "0.18.5"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

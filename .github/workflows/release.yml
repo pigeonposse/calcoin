@@ -1,0 +1,68 @@
+###############################################################################
+# RELEASE DOCS
+###############################################################################
+
+name: 🚀📚 Release Documentation
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Set number for release version'
+        type: string
+        required: true
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
+env:
+  GITHUB_TOKEN: ${{ github.token }}
+
+###############################################################################
+# JOBS
+###############################################################################
+
+jobs:
+  release_docs: 
+    name: 🚀📚 Release Documentation
+    runs-on: ubuntu-latest
+    steps:
+
+      #########################################################################
+      # INIT
+      #########################################################################
+
+      - name: ⬇️ Checkout
+        uses: actions/checkout@v4
+
+      - name: ⬇️🟢 Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: ⬇️🥡 Install pnpm
+        uses: pnpm/action-setup@v3
+
+      - name: ⬇️📦 Install dependencies
+        run: |
+          pnpm install --no-frozen-lockfile
+
+      #########################################################################
+      # BUILD
+      #########################################################################
+
+      - name: 🏗 Build
+        run: pnpm build
+
+      #########################################################################
+      # PUBLUSH WEB
+      #########################################################################
+
+      - name: 📚🌥 Deploy DOCS in cloudflare pages
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          gitHubToken: ${{ env.GITHUB_TOKEN }}
+          branch: main
+          projectName: "calcoin"
+          directory: 'dist'
+          wranglerVersion: '3'
