@@ -1,7 +1,7 @@
 
 # Calcoin by *PIGEONPOSSE*
 
-![HEADER](utils/banner001.png?raw=true)
+![HEADER](docs/banner.png)
 
 ### Company bonus management tool
 
@@ -17,7 +17,7 @@
 *   🖨️ Generate PDF reports summarizing the latest distribution.
 *   🌍 Open-source: MIT licensed, available for public use and contributions.
 
-![HEADER](utils/banner002.png?raw=true)
+![HEADER](docs/demo.png)
 
 ## How to Use
 
@@ -64,6 +64,7 @@ This software is licensed with **[GPL-3.0](/LICENSE)**.
 | <img src="https://github.com/PigeonPosse.png?size=72" alt="PigeonPosse" style="border-radius:100%"/> | PigeonPosse | Collective | [@PigeonPosse](https://github.com/PigeonPosse) |
 
 <br>
+
 <p align="center">
 
 [![Web](https://img.shields.io/badge/Web-grey?style=for-the-badge&logoColor=white)](https://pigeonposse.com)
